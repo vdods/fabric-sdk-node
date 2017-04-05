@@ -651,8 +651,10 @@ var FabricCAClient = class {
 							//we want the result field which is Base64-encoded PEM
 							var enrollResponse = new Object();
 							// Cert field is Base64-encoded PEM
-							enrollResponse.enrollmentCert = Buffer.from(res.result.Cert, 'base64').toString();
-							enrollResponse.caCertChain = Buffer.from(res.result.ServerInfo.CAChain, 'base64').toString();
+							logger.info(util.format('--------\n--------\n--------\nHIPPO\nres = %j', res));
+							enrollResponse.enrollmentCert = Buffer.from(res.result, 'base64').toString();
+							// enrollResponse.enrollmentCert = Buffer.from(res.result.Cert, 'base64').toString();
+							// enrollResponse.caCertChain = Buffer.from(res.result.ServerInfo.CAChain, 'base64').toString();
 							return resolve(enrollResponse);
 						} else {
 							return reject(new Error(
